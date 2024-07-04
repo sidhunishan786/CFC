@@ -374,36 +374,52 @@ vector<int> KMPSearch(string pat, string txt)
 
 
 int solve(){
-    
     int n;
     cin>>n;
     vector<int> v(n);
     input_arr(v);
-    for (int i = 1; i < n; i+=2)
+    unsigned int x=1;
+    sort(v.begin(),v.end());
+    for (int i = 0; i < v.size(); i++)
     {
-        v[i]*=(-1);
-        /* code */
+        x*=v[i];
+     
     }
-    
-    vector<int> prefix(n);
-    prefix[0]=v[0];
-    for (int i = 1; i < v.size(); i++)
-    {
-        prefix[i]=v[i]+prefix[i-1];
+    if(x==1 || v[0]==v[n-1]){
+
+        cout<<"YES\n";
+        return 1;
+
     }
 
-    sort(prefix.begin(),prefix.end());
-    for (int i = 1; i < prefix.size(); i++)
+
+
+    int y=1;
+    int temp=2;
+    unsigned int curr=b_expo(y,n);
+    while (curr<x)
     {
-        if(prefix[i]==prefix[i-1]){
-            cout<<"YES\n";
-            return 1;
-        }
+        y*=temp;
+        curr=b_expo(y,n);
+        
+    }
+    if(curr==x){
+        cout<<"YES\n";
+        return 1;
+    }
+    while (curr>x)
+    {
+        y--;
+        curr=b_expo(y,n);
         /* code */
     }
-    
+    if(curr==x){
+        cout<<"YES\n";
+        return 1;
+    }
+
     cout<<"NO\n";
-
+        
     
     return 1;
     

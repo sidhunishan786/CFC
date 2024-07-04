@@ -395,11 +395,11 @@ int solve(){
     sort(prefix.begin(),prefix.end());
     for (int i = 1; i < prefix.size(); i++)
     {
-        if(prefix[i]==prefix[i-1]){
+        if(prefix[i]==prefix[i-1] || prefix[i]==0 || prefix[i-1]==0){
             cout<<"YES\n";
             return 1;
         }
-        /* code */
+
     }
     
     cout<<"NO\n";
