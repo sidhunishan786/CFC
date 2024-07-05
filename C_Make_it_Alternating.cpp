@@ -375,8 +375,8 @@ vector<int> KMPSearch(string pat, string txt)
 
 int solve(){
     
-    int n;
-    cin>>n;
+    // int n;
+    // cin>>n;
 
     string s;
     cin>>s;
@@ -398,28 +398,37 @@ int solve(){
     int m = 998244353;
     int ans=1;
     int x=0;
+    int sum=0;
     for (int i = 0; i < v.size(); i++)
     {
         if(v[i]>1){
-            ans*=(v[i]-1);
-            x++;
+            ans*=(v[i]);
+            // x++;
+            sum+=(v[i]-1);
 
         }
+        
         ans%=m;
 
-        /* code */
     }
-    while (x--)
+    // cout<<v.size()<<nl;
+    // cout<<"v - > ";
+    // printv(v);
+    x=sum;
+    // cout<<"x  is "<<x<<nl;
+    while (x)
     {
+        
+        // cout<<"while x\n";
         ans*=x;
         ans%=m;
-        /* code */
+        x--;
+       
     }
-    
+    cout<<sum<<" ";
+
     cout<<ans<<nl;
 
-    
-    
     return 1;
     
 }
