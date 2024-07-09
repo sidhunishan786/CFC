@@ -369,88 +369,36 @@ vector<int> KMPSearch(string pat, string txt)
 
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
-class Solution {
-    public:
-    int x=INT_MAX;
-   
-    int minimumCost(string t, vector<string>& w, vector<int>& c) {
-        unordered_map<string,int> m;
-        for (int i = 0; i < w.size(); i++)
-        {
-            if(m.find(w[i])==m.end()){
-                m.insert({w[i],c[i]});
-            }
-            else
-            {
-                m[w[i]]=min(m[w[i]],c[i]);
-            }
-        }
-        vector<vector<int> > v(50001,vector<int>(50001,-1));
-        long long temp = help(t,0,0,m,v);
-        if(temp>=INT_MAX) return -1;
 
-        return temp;
-        
-        
-    }
-};
+
+
 
 int solve(){
     
-    // int n;
-    // cin>>n;
-
-    string s;
-    cin>>s;
-    int c=1;
-    vector<int> v;
-    for (int i = 1; i < s.size(); i++)
-    {
-        if(s[i]==s[i-1]){
-            c++;
-        }
-        else
-        {
-            v.push_back(c);
-            c=1;
-        }
-        
+    int n;
+    cin>>n;
+    if(n<=6){
+        cout<<"NO\n";
+        return 1;
     }
-    v.push_back(c);
-    int m = 998244353;
-    int ans=1;
-    int x=0;
-    int sum=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        if(v[i]>1){
-            ans*=(v[i]);
-            // x++;
-            sum+=(v[i]-1);
 
-        }
-        
-        ans%=m;
 
+   for (int i = 2; i<=sqrt(n); i++)
+   {
+    if((n-1)%i==0){
+    int x=log(n-1)/log(i);
+    int sum = (b_expo(i,x+1)-i)/(i-1);
+    if(sum==n-1 && x>1){
+        cout<<"YES\n";
+        return 1;
     }
-    // cout<<v.size()<<nl;
-    // cout<<"v - > ";
-    // printv(v);
-    x=sum;
-    // cout<<"x  is "<<x<<nl;
-    while (x)
-    {
-        
-        // cout<<"while x\n";
-        ans*=x;
-        ans%=m;
-        x--;
-       
+    
     }
-    cout<<sum<<" ";
+    
 
-    cout<<ans<<nl;
-
+   }
+   cout<<"NO\n";
+    
     return 1;
     
 }

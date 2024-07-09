@@ -369,88 +369,55 @@ vector<int> KMPSearch(string pat, string txt)
 
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
-class Solution {
-    public:
-    int x=INT_MAX;
-   
-    int minimumCost(string t, vector<string>& w, vector<int>& c) {
-        unordered_map<string,int> m;
-        for (int i = 0; i < w.size(); i++)
-        {
-            if(m.find(w[i])==m.end()){
-                m.insert({w[i],c[i]});
-            }
-            else
-            {
-                m[w[i]]=min(m[w[i]],c[i]);
-            }
-        }
-        vector<vector<int> > v(50001,vector<int>(50001,-1));
-        long long temp = help(t,0,0,m,v);
-        if(temp>=INT_MAX) return -1;
 
-        return temp;
-        
-        
-    }
-};
+
+
 
 int solve(){
     
-    // int n;
-    // cin>>n;
-
-    string s;
-    cin>>s;
-    int c=1;
-    vector<int> v;
-    for (int i = 1; i < s.size(); i++)
+    int n;
+    cin>>n;
+    vector<int> a(n),b(n);
+    input_arr(a);
+    input_arr(b);
+    for (int i = 0; i < n; i++)
     {
-        if(s[i]==s[i-1]){
-            c++;
-        }
-        else
-        {
-            v.push_back(c);
-            c=1;
-        }
-        
+        a[i]-=b[i];
+        /* code */
     }
-    v.push_back(c);
-    int m = 998244353;
-    int ans=1;
+    vector<pair<int,int> > vp(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        vp[i]={a[i],i+1};
+        /* code */
+    }
+    sort(vp.begin(),vp.end());
+
     int x=0;
-    int sum=0;
-    for (int i = 0; i < v.size(); i++)
+    int y=vp[n-1].first;
+    for (int i = n-1; i >=0; i--)
     {
-        if(v[i]>1){
-            ans*=(v[i]);
-            // x++;
-            sum+=(v[i]-1);
-
+        if(vp[i].first==y){
+            x++;
         }
-        
-        ans%=m;
-
+        /* code */
     }
-    // cout<<v.size()<<nl;
-    // cout<<"v - > ";
-    // printv(v);
-    x=sum;
-    // cout<<"x  is "<<x<<nl;
-    while (x)
+    cout<<x<<nl;
+    for (int i = 0; i < n; i++)
     {
-        
-        // cout<<"while x\n";
-        ans*=x;
-        ans%=m;
-        x--;
-       
+        if(vp[i].first==y){
+            cout<<vp[i].second<<" ";
+        }
+        /* code */
     }
-    cout<<sum<<" ";
+    
+    
+    cout<<nl;
 
-    cout<<ans<<nl;
-
+    
+    
+    
     return 1;
     
 }

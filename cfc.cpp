@@ -374,51 +374,11 @@ vector<int> KMPSearch(string pat, string txt)
 
 
 int solve(){
-    
-    int n;
-    cin>>n;
-
-    string s;
-    cin>>s;
-    int c=1;
-    vector<int> v;
-    for (int i = 1; i < s.size(); i++)
-    {
-        if(s[i]==s[i-1]){
-            c++;
-        }
-        else
-        {
-            v.push_back(c);
-            c=1;
-        }
-        
-    }
-    v.push_back(c);
-    int m = 998244353;
-    int ans=1;
-    int x=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        if(v[i]>1){
-            ans*=(v[i]-1);
-            x++;
-
-        }
-        ans%=m;
-
-        /* code */
-    }
-    while (x--)
-    {
-        ans*=x;
-        ans%=m;
-        /* code */
-    }
-    
-    cout<<ans<<nl;
-
-    
+   int n,m;
+   cin>>n>>m;
+   int x=log(n)/log(m);
+   cout<<"x- "<<x<<" pow- "<<pow(m,x)<<nl;
+   
     
     return 1;
     
