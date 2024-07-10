@@ -376,28 +376,46 @@ vector<int> KMPSearch(string pat, string txt)
 int solve(){
    int n;
    cin>>n;
-   vector<int> v(n),cost(n,0),len(n,0);
+   vector<int> v(n),pref(n,0);
    input_arr(v);
-
-   cost[0]=v[0];
+   vector<int> len(n);
    len[0]=1;
-
+   pref[0]=v[0];
    for (int i = 1; i < n; i++)
    {
-    if(cost[i-1]*v[i]>=(cost[i-1]*(len[i-1]+1))){
-        cost[i]=cost[i-1]*v[i];
-        len[i]=len[i-1]+1;
-    }
-    else
-    {
-        cost[i]=v[i];
-        len[i]=1;
-    }
+    pref[i]=pref[i-1]*v[i];
+  
+  
+   }
+   
+   for (int i = 1; i < n; i++)
+   {
+        int s=0;
+        int e=i;
+        while (s<e && s>0)
+        {
+            int m=s+(e-s)/2;
+           
+            int y=e-m+1;
+            if(y>v[m]){
+                s=m+1;
+            }
+            else
+            {
+                e=m;
+            }
+            
+          
+        }
+        if(s<0) s=0;
+        len[i]=i-s+1;
+    
+    
     
 
-
-    /* code */
    }
+
+   // printv(cost);
 
    printv(len);
    
