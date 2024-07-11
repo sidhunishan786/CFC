@@ -392,11 +392,11 @@ int solve(){
    {
         int s=0;
         int e=i;
-        while (s<e && s>0)
+        while (s<e)
         {
             int m=s+(e-s)/2;
            
-            int y=e-m+1;
+            int y=i-m+1;
             if(y>v[m]){
                 s=m+1;
             }
@@ -407,7 +407,9 @@ int solve(){
             
           
         }
+        // cout<<s<<" is s for i = "<<i<<nl;
         if(s<0) s=0;
+
         len[i]=i-s+1;
     
     
