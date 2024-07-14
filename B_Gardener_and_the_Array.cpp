@@ -368,22 +368,9 @@ vector<int> KMPSearch(string pat, string txt)
 }
 
 
-struct custom_hash {
-    static uint64_t splitmix64(uint64_t x) {
-        // http://xorshift.di.unimi.it/splitmix64.c
-        x += 0x9e3779b97f4a7c15;
-        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
-        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
-        return x ^ (x >> 31);
-    }
-
-    size_t operator()(uint64_t x) const {
-        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
-        return splitmix64(x + FIXED_RANDOM);
-    }
-};
-
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
+
+
 
 
 
@@ -393,6 +380,8 @@ int solve(){
    cin>>n;
    vector<vector<int> > v(n);
    int x=INT_MIN;
+
+   vector<int> count(200002,-1);
    for (int i = 0; i < n; i++)
    {
     int temp;
@@ -402,20 +391,19 @@ int solve(){
     {
         cin>>v[i][j];
         x=max(x,v[i][j]);
+        if(count[v[i][j]]==-1)  count[v[i][j]]=0;
+        count[v[i][j]]++;
         
     }
         
    }
 
-   map<int,int,custom_hash> m1;
-  
-   for (int i = 1; i <=x; i++)
-   {
-    m1[i]=0;
-    
-
-   }
    
+
+
+//////////
+   
+
 
 
    for (int i = 0; i < n; i++)
@@ -423,20 +411,20 @@ int solve(){
     bool f=true;
     for (int j = 0; j < v[i].size(); j++)
     {
-        if(m1[v[i][j]]<=1){
+        if(count[v[i][j]]<=1 && count[v[i][j]]!=-1){
             f=false;
             // return 1;
         }
         
     }
     if(f){
-        cout<<"YES\n";
+        cout<<"Yes\n";
         return 1;
     }
 
    }
 
-   cout<<"NO\n";
+   cout<<"No\n";
 
    
    
