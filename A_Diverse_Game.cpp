@@ -385,98 +385,48 @@ struct custom_hash {
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
-bool checs(vector<int> v,int idx){
-    int x=INT_MIN;
-    int curr=0;
-    for (int i = v.size()-1; i >=0; i--)
+
+
+int solve(){
+
+    int n,k;
+    cin>>n>>k;
+    vector<vector<int> > v(n,vector<int>(k,0));
+    for (int i = 0; i < n; i++)
     {
-        // cout<<"curr- > "<<curr<<nl;
-        curr+=v[i];
-        x=max(x,curr);
+        for (int j = 0; j < k; j++)
+        {
+            cin>>v[i][j];
+            /* code */
+        }
         
-    }
-
-
-    // cout<<"x -> "<<x<<nl;
-
-    curr=0;
-    for (int i = v.size()-1; i >=0; i--)
-    {
-        curr+=v[i];
-        if(curr==x) return idx==i;
-      
-    }
-
-    return false;
-
-
-
-}
-bool checp(vector<int> v,int idx){
-    int x=INT_MIN;
-    int curr=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        curr+=v[i];
-        x=max(x,curr);
         /* code */
     }
-    curr=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        curr+=v[i];
-        if(curr==x) return idx==i;
-      
+    if(n==1 && k==1){
+        cout<<-1<<nl;
+        return 1;
     }
+    for (int i = 0; i < n/2; i++)
+    {
+        swap(v[i],v[n-i-1]);
+        /* code */
+    }
+    if(n==1){
+        reverse(v[0].begin(),v[0].end());
+        if(k%2==1 && k>1){
+        swap(v[0][k/2],v[0][k/2+1]);
+    }
+
+    }
+    if(n%2==1 && n>1){
+        swap(v[n/2],v[n/2+1]);
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        printv(v[i]);
    
-    
-
-    return false;
-    
-}
-
-
-int solve(/*int n,int x,int y*/){
-
-    int n,x,y;
-    cin>>n>>x>>y;
-
-    vector<int> v(n,1);
-        
-    x--;
-    y--;
-
-    for (int i = x+1; i < n; i+=2)
-    {
-        v[i]=-1;
-        /* code */
     }
-    
-
-    for (int i = y-1; i >=0; i-=2)
-    {
-        v[i]=-1;
-        /* code */
-    }
-    
-    
-
-    printv(v);
-
-    // if(checp(v,x) && checs(v,y)){
-    //     cout<<"RIGHT\n";
-    //     return 1;
-
-    // }
-    // printv(v);
-    // cout<<x<<" "<<y<<nl;
-    // cout<<"WRONG\n";
-
-    
-    
-
-
-    
     
     return 1;
     
@@ -485,26 +435,7 @@ int solve(/*int n,int x,int y*/){
 
 int32_t main()
 {  
-
-
-
-    // for (int i = 2; i <=10; i++)
-    // {
-    //     for (int j = 1; j < i; j++)
-    //     {
-    //         solve(15,i,j);
-    //         /* code */
-    //     }
-        
-    //     /* code */
-    // }
-    
-
-
-
-
-
-    // return 1;
+ 
 
 
     int t;

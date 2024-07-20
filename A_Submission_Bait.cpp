@@ -385,96 +385,37 @@ struct custom_hash {
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
-bool checs(vector<int> v,int idx){
-    int x=INT_MIN;
-    int curr=0;
-    for (int i = v.size()-1; i >=0; i--)
-    {
-        // cout<<"curr- > "<<curr<<nl;
-        curr+=v[i];
-        x=max(x,curr);
-        
+
+
+int solve(){
+
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    input_arr(v);
+   unordered_map<int,int> m;
+   for (int i = 0; i < v.size(); i++)
+   {
+    if(m.find(v[i])==m.end()){
+        m.insert({v[i],1});
     }
-
-
-    // cout<<"x -> "<<x<<nl;
-
-    curr=0;
-    for (int i = v.size()-1; i >=0; i--)
+    else
     {
-        curr+=v[i];
-        if(curr==x) return idx==i;
-      
+        m[v[i]]++;
     }
+    
+   }
 
-    return false;
-
-
-
-}
-bool checp(vector<int> v,int idx){
-    int x=INT_MIN;
-    int curr=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        curr+=v[i];
-        x=max(x,curr);
-        /* code */
+   for (auto i = m.begin(); i !=m.end(); i++)
+   {
+    if(i->second%2==1){
+        cout<<"YES\n";
+        return 1;
     }
-    curr=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        curr+=v[i];
-        if(curr==x) return idx==i;
-      
-    }
+    /* code */
+   }
+   cout<<"NO\n";
    
-    
-
-    return false;
-    
-}
-
-
-int solve(/*int n,int x,int y*/){
-
-    int n,x,y;
-    cin>>n>>x>>y;
-
-    vector<int> v(n,1);
-        
-    x--;
-    y--;
-
-    for (int i = x+1; i < n; i+=2)
-    {
-        v[i]=-1;
-        /* code */
-    }
-    
-
-    for (int i = y-1; i >=0; i-=2)
-    {
-        v[i]=-1;
-        /* code */
-    }
-    
-    
-
-    printv(v);
-
-    // if(checp(v,x) && checs(v,y)){
-    //     cout<<"RIGHT\n";
-    //     return 1;
-
-    // }
-    // printv(v);
-    // cout<<x<<" "<<y<<nl;
-    // cout<<"WRONG\n";
-
-    
-    
-
 
     
     
@@ -485,26 +426,7 @@ int solve(/*int n,int x,int y*/){
 
 int32_t main()
 {  
-
-
-
-    // for (int i = 2; i <=10; i++)
-    // {
-    //     for (int j = 1; j < i; j++)
-    //     {
-    //         solve(15,i,j);
-    //         /* code */
-    //     }
-        
-    //     /* code */
-    // }
-    
-
-
-
-
-
-    // return 1;
+ 
 
 
     int t;

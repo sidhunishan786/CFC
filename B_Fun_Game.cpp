@@ -385,97 +385,43 @@ struct custom_hash {
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
-bool checs(vector<int> v,int idx){
-    int x=INT_MIN;
-    int curr=0;
-    for (int i = v.size()-1; i >=0; i--)
+
+
+int solve(){
+
+    int n;
+    cin>>n;
+    string s1,s2;
+    cin>>s1>>s2;
+    if (s1==s2)
     {
-        // cout<<"curr- > "<<curr<<nl;
-        curr+=v[i];
-        x=max(x,curr);
+        cout<<"YES\n";
+        return 1;
+    }
+    bool o=false;
+
+    for (int i = 0; i < n; i++)
+    {
+        if(s1[i]=='0' && s2[i]=='1'){
+            cout<<"NO\n";
+            return 1;
+
+        }
+        else if(s1[i]=='1'){
+            break;
+        }
+
+    }
+    
+
+    
+    if(s1[0]=='0' && s2[0]=='1'){
+        cout<<"NO\n";
+        return 1;
+    }
         
-    }
-
-
-    // cout<<"x -> "<<x<<nl;
-
-    curr=0;
-    for (int i = v.size()-1; i >=0; i--)
-    {
-        curr+=v[i];
-        if(curr==x) return idx==i;
-      
-    }
-
-    return false;
-
-
-
-}
-bool checp(vector<int> v,int idx){
-    int x=INT_MIN;
-    int curr=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        curr+=v[i];
-        x=max(x,curr);
-        /* code */
-    }
-    curr=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        curr+=v[i];
-        if(curr==x) return idx==i;
-      
-    }
-   
+    cout<<"YES\n";
     
-
-    return false;
-    
-}
-
-
-int solve(/*int n,int x,int y*/){
-
-    int n,x,y;
-    cin>>n>>x>>y;
-
-    vector<int> v(n,1);
-        
-    x--;
-    y--;
-
-    for (int i = x+1; i < n; i+=2)
-    {
-        v[i]=-1;
-        /* code */
-    }
-    
-
-    for (int i = y-1; i >=0; i-=2)
-    {
-        v[i]=-1;
-        /* code */
-    }
-    
-    
-
-    printv(v);
-
-    // if(checp(v,x) && checs(v,y)){
-    //     cout<<"RIGHT\n";
-    //     return 1;
-
-    // }
-    // printv(v);
-    // cout<<x<<" "<<y<<nl;
-    // cout<<"WRONG\n";
-
-    
-    
-
-
     
     
     return 1;
@@ -485,26 +431,7 @@ int solve(/*int n,int x,int y*/){
 
 int32_t main()
 {  
-
-
-
-    // for (int i = 2; i <=10; i++)
-    // {
-    //     for (int j = 1; j < i; j++)
-    //     {
-    //         solve(15,i,j);
-    //         /* code */
-    //     }
-        
-    //     /* code */
-    // }
-    
-
-
-
-
-
-    // return 1;
+ 
 
 
     int t;

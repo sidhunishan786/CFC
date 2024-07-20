@@ -385,97 +385,17 @@ struct custom_hash {
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
-bool checs(vector<int> v,int idx){
-    int x=INT_MIN;
-    int curr=0;
-    for (int i = v.size()-1; i >=0; i--)
-    {
-        // cout<<"curr- > "<<curr<<nl;
-        curr+=v[i];
-        x=max(x,curr);
-        
+
+
+int solve(){
+
+    int n,k;
+    cin>>n>>k;
+    if((n-1)%(k-1)==0){
+        cout<<(n-1)/(k-1)<<nl;
+        return 1;
     }
-
-
-    // cout<<"x -> "<<x<<nl;
-
-    curr=0;
-    for (int i = v.size()-1; i >=0; i--)
-    {
-        curr+=v[i];
-        if(curr==x) return idx==i;
-      
-    }
-
-    return false;
-
-
-
-}
-bool checp(vector<int> v,int idx){
-    int x=INT_MIN;
-    int curr=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        curr+=v[i];
-        x=max(x,curr);
-        /* code */
-    }
-    curr=0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        curr+=v[i];
-        if(curr==x) return idx==i;
-      
-    }
-   
-    
-
-    return false;
-    
-}
-
-
-int solve(/*int n,int x,int y*/){
-
-    int n,x,y;
-    cin>>n>>x>>y;
-
-    vector<int> v(n,1);
-        
-    x--;
-    y--;
-
-    for (int i = x+1; i < n; i+=2)
-    {
-        v[i]=-1;
-        /* code */
-    }
-    
-
-    for (int i = y-1; i >=0; i-=2)
-    {
-        v[i]=-1;
-        /* code */
-    }
-    
-    
-
-    printv(v);
-
-    // if(checp(v,x) && checs(v,y)){
-    //     cout<<"RIGHT\n";
-    //     return 1;
-
-    // }
-    // printv(v);
-    // cout<<x<<" "<<y<<nl;
-    // cout<<"WRONG\n";
-
-    
-    
-
-
+    cout<<((n-1)/(k-1))+1<<nl;
     
     
     return 1;
@@ -485,26 +405,7 @@ int solve(/*int n,int x,int y*/){
 
 int32_t main()
 {  
-
-
-
-    // for (int i = 2; i <=10; i++)
-    // {
-    //     for (int j = 1; j < i; j++)
-    //     {
-    //         solve(15,i,j);
-    //         /* code */
-    //     }
-        
-    //     /* code */
-    // }
-    
-
-
-
-
-
-    // return 1;
+ 
 
 
     int t;
