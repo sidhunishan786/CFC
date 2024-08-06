@@ -386,10 +386,29 @@ struct custom_hash {
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
 
-int solve(){
+int solve(/*int n,int x,int y*/){
 
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    input_arr(v);
+    int ans=INT_MIN;
+    for (int i = 0; i < v.size(); i+=2)
+    {
+        ans=max(ans,v[i]);
+        /* code */
+    }
+
+    cout<<ans<<nl;
     
 
+   
+    
+    
+    
+
+
+    
     return 1;
     
 }
@@ -421,7 +440,7 @@ int32_t main()
 
     int t;
     t=1; // for single test case.
-    // cin>>t;
+    cin>>t;
     ////
     
     while (t--)

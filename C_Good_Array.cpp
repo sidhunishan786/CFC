@@ -384,10 +384,67 @@ struct custom_hash {
 };
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
+#define SIZE 200005
+int arr[SIZE]={0};
 
 
 int solve(){
 
+    int n;
+    cin>>n;
+    
+    int f=-1,s=-1;
+    int sum=0;
+    for (int i = 0; i < n; i++)
+    {
+        cin>>arr[i];
+        if(arr[i]>=f){
+            s=f;
+            f=arr[i];
+        }
+        else if(arr[i]>s){
+            s=arr[i];
+        }
+        sum+=arr[i];
+        
+    }
+
+    // cout<<f<<" -- "<<s<<nl;
+
+
+    int v[n+5];
+    int ans=0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if(arr[i]==f){
+            if(sum - s - arr[i] == s){
+                v[ans] = i+1;
+                ans++;
+            }
+
+        }
+        else if(f == sum - arr[i] - f)
+        {
+            v[ans] = i+1;
+            ans++;
+            
+        }
+        
+        /* code */
+    }
+    
+
+
+    
+    
+    
+    cout<<ans<<nl;
+    for (int i = 0; i < ans; i++)
+    {
+        cout<<v[i]<<" ";
+        /* code */
+    }
     
 
     return 1;

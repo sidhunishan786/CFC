@@ -386,10 +386,14 @@ struct custom_hash {
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
 
-int solve(){
+int solve(/*int n,int x,int y*/){
 
+    int n;
+    cin>>n;
+    int x=n/4;
+    int rem = n-(x*4);
+    cout<<x+(rem/2)<<nl;;
     
-
     return 1;
     
 }
@@ -421,7 +425,7 @@ int32_t main()
 
     int t;
     t=1; // for single test case.
-    // cin>>t;
+    cin>>t;
     ////
     
     while (t--)

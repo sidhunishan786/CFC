@@ -388,7 +388,34 @@ struct custom_hash {
 
 int solve(){
 
-    
+    int n;
+    int k;
+    cin>>n>>k;
+    vector<int> v(n);
+    input_arr(v);
+    int curr =0;
+    for (int i = 0; i < k; i++)
+    {
+        curr+=v[i];
+        /* code */
+    }
+    double x=1;
+    int ans=curr;
+    for (int i = k; i < n; i++)
+    {
+        curr-=v[i-k];
+        curr+=v[i];
+        ans+=curr;
+        x++;
+
+
+        /* code */
+    }
+    // cout<<ans<<" -----  "<<k<<nl;
+     cout<<fixed<<setprecision(10)<<ans/(x)<<nl;
+   
+    // cout;
+
 
     return 1;
     

@@ -386,10 +386,76 @@ struct custom_hash {
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
 
-int solve(){
+int solve(/*int n,int x,int y*/){
 
+    int n,x;
+    cin>>n>>x;
+    
+    int ans=0;
+    // cout<<"running 1\n";
+    for (int i = 1; i <=ceil(sqrt(n)); i++)
+    {
+        // cout<<"running 2\n";
+        for (int j = i; j <= ceil(sqrt(n)); j++)
+        {
+            // cout<<"running 3\n";
+            for (int k = ceil((n-(i*j))/((i)+j)); k>=j && (k*i + i*j + k*j) <=n; k--)
+            {
+                // cout<<"running 4\n";
+                if(i*j + j*k + k*i <=n && k+i+j<=x){
+
+                    int rem=k-j+1;
+
+                    // cout<<"rem - "<<rem<<nl;
+                    if(i==k){
+                        ans++;
+                        break;
+                    }
+                    else if(i==j){
+                        
+                        ans++;
+                        ans+=3;
+                        ans+=((rem-2)*6);
+                        break ;
+
+                    }
+                    else{
+                        ans+=3;
+                        ans+=((rem-1)*6);
+                        break;
+                    }
+                    
+
+                    if(i==k){
+                        ans++;
+                    }
+                    else if(i!=j && j!=k){
+                        ans+=6;
+                    }
+                    else{
+                        ans+=3;
+                    }
+
+                    // break;
+                    
+                }
+                /* code */
+            }
+            
+            /* code */
+        }
+        
+        /* code */
+    }
+
+    cout<<ans<<nl;
+    
+    
+    
     
 
+
+    
     return 1;
     
 }
@@ -421,7 +487,7 @@ int32_t main()
 
     int t;
     t=1; // for single test case.
-    // cin>>t;
+    cin>>t;
     ////
     
     while (t--)

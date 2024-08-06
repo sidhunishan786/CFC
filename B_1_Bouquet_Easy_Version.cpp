@@ -386,10 +386,98 @@ struct custom_hash {
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
 
-int solve(){
+int solve(/*int n,int x,int y*/){
+
+    int n,m;
+    cin>>n>>m;
+   
+    vector<int> v(n);
+    input_arr(v);
+    
+    sort(v.begin(),v.end());
+
+    // printv(v);
+
+    int sum=0;
+    int s=0,e=0;
+    int ans=0;
+    while (e<n)
+    {
+        // cout<<"sum is "<<sum<<"  e is "<<e<<nl;
+        if(sum<=m && (v[s]==v[e] || v[s]+1==v[e])){
+            ans=max(ans,sum);
+        }
+        
+        
+        while (s<e && sum>m)
+        {
+            sum-=v[s];
+            s++;
+            
+        }
+
+        if(sum<=m && (v[s]==v[e] || v[s]+1==v[e])){
+            ans=max(ans,sum);
+        }
+        
+        sum+=v[e];
+        // cout<<"sum is "<<sum<<"  e is "<<e<<nl;
+        if(sum<=m && (v[s]==v[e] || v[s]+1==v[e])){
+            ans=max(ans,sum);
+        }
+        
+     
+        while (s<e && v[s]+1<v[e])
+        {
+            sum-=v[s];
+            s++;
+                
+        }
+            
+        
+
+        if(sum<=m && (v[s]==v[e] || v[s]+1==v[e])){
+            ans=max(ans,sum);
+        }
+
+
+        
+
+        while (s<e && v[s]+1<v[e])
+        {
+            sum-=v[s];
+            s++;
+                
+        }
+            
+        
+
+        if(sum<=m && (v[s]==v[e] || v[s]+1==v[e])){
+            ans=max(ans,sum);
+        }
+
+        while (s<e && sum>m)
+        {
+            sum-=v[s];
+            s++;
+            
+        }
+        //cout<<"sum is "<<sum<<"  e is "<<e<<nl;
+
+        if(sum<=m && (v[s]==v[e] || v[s]+1==v[e])){
+            ans=max(ans,sum);
+        }
+
+        e++;
+ 
+    }
+    
+    
+    cout<<ans<<nl;
+  
 
     
-
+    
     return 1;
     
 }
@@ -421,7 +509,7 @@ int32_t main()
 
     int t;
     t=1; // for single test case.
-    // cin>>t;
+    cin>>t;
     ////
     
     while (t--)

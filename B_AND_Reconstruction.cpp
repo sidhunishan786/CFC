@@ -386,10 +386,100 @@ struct custom_hash {
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
 
-int solve(){
+int solve(/*int n,int x,int y*/){
 
+    int n;
+    cin>>n;
+    vector<int> v(n-1);
+    input_arr(v);
+    vector<vector<int> > ans(n,vector<int>(32,0));
+    for (int i = 0; i < v.size(); i++)
+    {
+        int idx=0;
+        int curr=v[i];
+        while (curr)
+        {
+            if(curr%2==1){
+           ans[i][idx]=curr%2;
+
+            }
+            
+            curr/=2;
+            idx++;
+           
+        }
+
+        idx=0;
+        curr=v[i];
+        while (curr)
+        {
+            if(curr%2==1){
+            ans[i+1][idx]=curr%2;
+
+            }
+            curr/=2;
+            idx++;
+           
+        }
+        
+    }
+
+    // cout<<"---->  \n";
+    // for (int i = 0; i < ans.size(); i++)
+    // {
+    //     printv(ans[i]);
+    //     /* code */
+    // }
+    // cout<<"---->  \n";
+
+    int last=0;
+    for (int i = 0; i < ans[0].size(); i++)
+    {
+        if(ans[0][i]){
+            last += b_expo(2,i);
+        }
+        
+
+       
+    }
+    ans[0][0]=last;
     
 
+    for (int i = 1; i < ans.size(); i++)
+    {
+        int curr=0;
+        for (int j = 0; j < ans[i].size(); j++)
+        {
+            if(ans[i][j]){
+                curr+=pow(2,j);
+            }
+            
+        }
+
+        if((last & curr) != v[i-1]){
+            cout<<-1<<nl;
+            return 1;
+        }
+        last = curr;
+        ans[i][0]=curr;
+
+
+        
+    }
+    
+        
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout<<ans[i][0]<<" "; 
+        /* code */
+    }
+    cout<<nl; 
+    
+    
+    
+
+
+    
     return 1;
     
 }
@@ -421,7 +511,7 @@ int32_t main()
 
     int t;
     t=1; // for single test case.
-    // cin>>t;
+    cin>>t;
     ////
     
     while (t--)

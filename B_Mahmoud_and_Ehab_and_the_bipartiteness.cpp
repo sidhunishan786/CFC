@@ -388,6 +388,55 @@ struct custom_hash {
 
 int solve(){
 
+    int n;
+    cin>>n;
+    vector<vector<int> > v(n+1); 
+    for (int i = 0; i < n-1; i++)
+    {
+        int s,d;
+        cin>>s>>d;
+        v[s].push_back(d);
+        v[d].push_back(s);
+    }
+
+    queue<pair<int,int> > q;
+    q.push({1,0});
+    int r=0,l=0;
+
+    vector<bool> vis(n+2,false);
+    vis[1]=true;
+
+    while (!q.empty())
+    {
+        pair<int,int> curr = q.front();
+        q.pop();
+        if(curr.second%2==0){
+            r++;
+
+        }
+        else
+        {
+            l++;
+        }
+        for (int i = 0; i < v[curr.first].size(); i++)
+        {
+            if(!vis[v[curr.first][i]]){
+            q.push({v[curr.first][i],curr.second+1});
+            vis[v[curr.first][i]]= !vis[v[curr.first][i]];
+
+            }
+            /* code */
+        }
+        
+        
+        /* code */
+    }
+    
+    cout<<l*r - (n-1)<<nl;
+
+
+    
+    
     
 
     return 1;

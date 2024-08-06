@@ -388,8 +388,74 @@ struct custom_hash {
 
 int solve(){
 
-    
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    input_arr(v);
+    int sum=0;
+    bool f=true;
+    int idx=0;
+    vector<int> ans(90);
 
+   
+    for (int i = 0; i < 80; i++)
+    {
+        // cout<<i<<nl;
+        // cout<<"temp\n";
+        // cout<<f<<nl;
+        if(f){
+            sum=sum_of_arr(v);
+            
+        }
+        else
+        {
+            int avg = sum/n;
+           
+            
+            if(avg==0){
+                avg++;
+            }
+            
+            
+            
+            
+            ans[idx]=avg;
+
+            // cout<<avg<<" <--- is avg\n";
+            idx++;
+            for (int j = 0; j < v.size(); j++)
+            {
+                v[j]= abs(avg-v[j]);
+                /* code */
+            }
+           
+            
+            
+            // idx++;
+      
+            
+        }
+
+
+        f=!f;
+
+        if(sum==0){
+            cout<<idx<<nl;
+            for (int k = 0; k < idx; k++)
+            {
+                cout<<ans[k]<<" ";
+               
+            }
+            cout<<nl;
+
+            return 1;
+            
+        }
+        
+    }
+
+    cout<<-1<<nl;
+    
     return 1;
     
 }
@@ -421,7 +487,7 @@ int32_t main()
 
     int t;
     t=1; // for single test case.
-    // cin>>t;
+    cin>>t;
     ////
     
     while (t--)

@@ -386,10 +386,88 @@ struct custom_hash {
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
 
-int solve(){
+int solve(/*int n,int x,int y*/){
+
+    int n,q;
+    cin>>n>>q;
+    string a,b;
+    cin>>a;
+    cin>>b;
+    vector<vector<int> > va(n,vector<int>(26,0)),vb(n,vector<int>(26,0));
+    va[0][a[0]-'a']=1;
+    for (int i = 1; i < n; i++)
+    {
+        va[i]=va[i-1];
+        va[i][a[i]-'a']=va[i-1][a[i]-'a']+1;
+        
+    }
+    vb[0][b[0]-'a']=1;
+    for (int i = 1; i < n; i++)
+    {
+        vb[i]=vb[i-1];
+        vb[i][b[i]-'a']=vb[i-1][b[i]-'a']+1;
+        
+    }
 
     
+    // cout<<"------------\n";
 
+    // for (int i = 0; i < va.size(); i++)
+    // {
+    //     printv(va[i]);
+    //     /* code */
+    // }
+    // cout<<"------------\n";
+
+    // cout<<"reached\n";
+
+    while (q--)
+    {
+        int l,r;
+        cin>>l>>r;
+        l--;
+        r--;
+        vector<int> tempa(26),tempb(26);
+        for (int i = 0; i < 26; i++)
+        {
+            tempa[i] = va[r][i];
+            tempb[i] = vb[r][i];
+            
+            /* code */
+        }
+        // cout<<"running - "<<q<<nl;
+     
+        if(l-1>=0){
+            for (int i = 0; i < 26; i++)
+        {
+            tempa[i] -= va[l-1][i];
+            tempb[i] -= vb[l-1][i];
+            
+         
+        }
+        }
+        int ans=0;
+        for (int i = 0; i < 26; i++)
+        {
+            if(tempa[i]!=tempb[i]){
+                ans+=(abs(tempa[i]-tempb[i]));
+            }
+            /* code */
+        }
+
+        cout<<ans/2<<nl;
+        
+
+
+        
+    }
+    
+    
+    
+    
+
+
+    
     return 1;
     
 }
@@ -421,7 +499,7 @@ int32_t main()
 
     int t;
     t=1; // for single test case.
-    // cin>>t;
+    cin>>t;
     ////
     
     while (t--)

@@ -388,7 +388,31 @@ struct custom_hash {
 
 int solve(){
 
-    
+    string s;
+    cin>>s;
+    int ans=0;
+    for (int i = 1; i < s.size(); i++)
+    {
+        if(s[i]==s[i-1]){
+            vector<bool> v(26,false);
+            v[s[i-1]-'a']=true;
+            if(i+1<s.size()) v[s[i+1]-'a']=true;
+
+            for (int j = 0; j < v.size(); j++)
+            {
+                if(!v[j]){
+                    s[i]=j+'a';
+                    break;
+                }
+                /* code */
+            }
+            
+
+        }
+        /* code */
+    }
+    // cout<<ans<<nl;
+    cout<<s<<nl;
 
     return 1;
     

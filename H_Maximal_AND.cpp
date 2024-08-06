@@ -385,11 +385,74 @@ struct custom_hash {
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
-
 int solve(){
 
+    int n,k;
+    cin>>n>>k;
+    vector<vector<int> > v(n,vector<int>(31));
+    vector<int> ans(31,0);
+    for (int i = 0; i < n; i++)
+    {
+        int temp;
+        cin>>temp;
+        int idx=0;
+        while (temp)
+        {
+            v[i][idx]=temp%2;
+            temp/=2;
+           idx++;
+        }
+
+        reverse(v[i].begin(),v[i].end());
+        
+    }
+
+    // cout<<"-------\n";
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     printv(v[i]);
+    //     /* code */
+    // }
+
+    // cout<<"-------\n";
+    
+    for (int i = 0; i < 31; i++)
+    {
+        int x=0;
+        for (int j = 0; j < n; j++)
+        {
+            if(v[j][i]==0){
+                x++;
+            }
+            /* code */
+        }
+        if(x<=k){
+            ans[i]=1;
+            k-=x;
+        }
+        
+        /* code */
+    }
+    int a=0;
+
+    // cout<<"ans -> ";
+    // printv(ans);
+    // cout<<"----\n";
+    for (int i = 0; i < ans.size(); i++)
+    {
+        if(ans[i]==1){
+            a+=pow(2,30-i);
+            // cout<<"bexpo - "<<a<<nl; 
+        }
+        /* code */
+    }
+    cout<<a<<nl;
     
 
+    
+    
+    
     return 1;
     
 }
@@ -421,7 +484,7 @@ int32_t main()
 
     int t;
     t=1; // for single test case.
-    // cin>>t;
+    cin>>t;
     ////
     
     while (t--)
