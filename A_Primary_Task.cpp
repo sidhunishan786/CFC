@@ -402,51 +402,44 @@ int NcR(int n, int r)
 
 
 int solve(){
-    int k;
-    int n,m,w;
-    cin>>m>>n>>k;
-    cin>>w;
-    vector<int> wgt(w);
-    input_arr(wgt);
-    sort(wgt.begin(),wgt.end());
-       
-    vector<int> mul(n*m);
+ 
+    int n;
+    cin>>n;
+    vector<int> v(100,-1);
+    int temp=n;
     int idx=0;
-    vector<vector<int> > v2(m,vector<int>(n,0));
-    for (int i = 0; i <v2.size(); i++)
+    for (int i = 0; i < 100 && temp; i++)
     {
-      
-        for (int j = 0; j < v2[0].size(); j++)
-        {
-            int zz=0;
-            int rowStart = max(zz, i - k + 1);
-    int rowEnd = min(m - k, i);
-    int colStart = max(zz, j - k + 1);
-    int colEnd = min(n - k, j);
+        v[i]=temp%10;
+        temp/=10;
+        idx++;
 
-    
-    int rowCount = rowEnd - rowStart + 1;
-    int colCount = colEnd - colStart + 1;
-    mul[idx]= rowCount * colCount;
-    idx++;
-   
-
-        }
-        
-      
+        /* code */
     }
-
-   sort(mul.begin(),mul.end());
-   idx=mul.size()-1;
-   int ans=0;
-   for (int i = wgt.size()-1; i >=0; i--)
-   {
-    ans+=(wgt[i]*mul[idx--]);
-    /* code */
-   }
-   
-    // cout<<"ans -> ";
-    cout<<ans<<nl;
+    reverse(v.begin(),v.begin()+idx);
+    // printv(v);
+    if(v[0]!=1 || v[1]!=0){
+        cout<<"NO\n";
+        return 1;
+    }
+    int x=0;
+    for (int i = 2; i < 100 && v[i]!=-1; i++)
+    {
+        x*=10;
+        x+=v[i];
+        /* code */
+    }
+    if(v[2]<=0){
+        cout<<"NO\n";
+        return 1;
+    }
+    if(x>1){
+        cout<<"YES\n";
+        return 1;
+    }
+    
+    cout<<"NO\n";
+    
     
     return 1;
     

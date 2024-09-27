@@ -402,51 +402,66 @@ int NcR(int n, int r)
 
 
 int solve(){
-    int k;
-    int n,m,w;
-    cin>>m>>n>>k;
-    cin>>w;
-    vector<int> wgt(w);
-    input_arr(wgt);
-    sort(wgt.begin(),wgt.end());
-       
-    vector<int> mul(n*m);
-    int idx=0;
-    vector<vector<int> > v2(m,vector<int>(n,0));
-    for (int i = 0; i <v2.size(); i++)
+ 
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    input_arr(v);
+    int q;
+    cin>>q;
+    while (q--)
     {
-      
-        for (int j = 0; j < v2[0].size(); j++)
-        {
-            int zz=0;
-            int rowStart = max(zz, i - k + 1);
-    int rowEnd = min(m - k, i);
-    int colStart = max(zz, j - k + 1);
-    int colEnd = min(n - k, j);
-
-    
-    int rowCount = rowEnd - rowStart + 1;
-    int colCount = colEnd - colStart + 1;
-    mul[idx]= rowCount * colCount;
-    idx++;
-   
-
+        string s;
+        cin>>s;
+        map<char,int> m1;
+        map<int,char> m2;
+        if(s.size()!=n){
+            cout<<"NO\n";
+            continue;
         }
-        
-      
-    }
+        bool f=true;
+        for (int i = 0; i < s.size(); i++)
+        {
+            if(m1.find(s[i])==m1.end()){
+                m1.insert({s[i],v[i]});
+            }
+            else if(m1[s[i]]!=v[i]){
+                cout<<"NO\n";
+                f=false;
 
-   sort(mul.begin(),mul.end());
-   idx=mul.size()-1;
-   int ans=0;
-   for (int i = wgt.size()-1; i >=0; i--)
-   {
-    ans+=(wgt[i]*mul[idx--]);
-    /* code */
-   }
-   
-    // cout<<"ans -> ";
-    cout<<ans<<nl;
+            }
+
+            /* code */
+        }
+        if(!f){
+            cout<<"NO\n";
+            continue;
+        }
+        for (int i = 0; i < n; i++)
+        {
+            if(m2.find(v[i])==m2.end()){
+                m2.insert({v[i],s[i]});
+            }
+            else if(m2[v[i]]!=s[i]){
+                f=false;
+            }
+            /* code */
+        }
+        if(!f){
+            cout<<"NO\n";
+            continue;
+        }
+
+        cout<<"YES\n";
+
+
+        
+        
+        /* code */
+    }
+    
+    
+    
     
     return 1;
     

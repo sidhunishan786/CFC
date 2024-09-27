@@ -364,90 +364,79 @@ struct custom_hash {
         return splitmix64(x + FIXED_RANDOM);
     }
 };
-
-int NcR(int n, int r)
-{
- 
-    long long p = 1, k = 1;
- 
-    if (n - r < r)
-        r = n - r;
- 
-    if (r != 0) {
-        while (r) {
-            p *= n;
-            p%mod;
-            k *= r;
- 
-            long long m = __gcd(p, k);
- 
-            p /= m;
-            k /= m;
- 
-            n--;
-            r--;
-        }
- 
-    }
- 
-    else
-        p = 1;
- 
-    // if our approach is correct p = ans and k =1
-    return p;
-}
-
+const int N = 2e5 + 5;
+int64_t fact[N];
 
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
-
+int64_t NcR(int n, int k) {
+	if(n < k) return 0LL;
+	return (fact[n] * pw((fact[n - k] * fact[k]) % mod, mod - 2)) % mod;
+}
 
 int solve(){
-    int k;
-    int n,m,w;
-    cin>>m>>n>>k;
-    cin>>w;
-    vector<int> wgt(w);
-    input_arr(wgt);
-    sort(wgt.begin(),wgt.end());
-       
-    vector<int> mul(n*m);
-    int idx=0;
-    vector<vector<int> > v2(m,vector<int>(n,0));
-    for (int i = 0; i <v2.size(); i++)
+
+fact[0] = 1;
+	for(int64_t i = 1; i < N; ++i) fact[i] = (fact[i - 1] * i) % mod;
+
+
+    int n,k;
+    cin>>n>>k;
+    vector<int> v(n);
+    input_arr(v);
+    int o=0,z=0;
+    for (int i = 0; i < n; i++)
     {
-      
-        for (int j = 0; j < v2[0].size(); j++)
+        if(v[i]==1){
+            o++;
+        }
+        else
         {
-            int zz=0;
-            int rowStart = max(zz, i - k + 1);
-    int rowEnd = min(m - k, i);
-    int colStart = max(zz, j - k + 1);
-    int colEnd = min(n - k, j);
-
-    
-    int rowCount = rowEnd - rowStart + 1;
-    int colCount = colEnd - colStart + 1;
-    mul[idx]= rowCount * colCount;
-    idx++;
-   
-
+            z++;
         }
         
-      
+        /* code */
     }
-
-   sort(mul.begin(),mul.end());
-   idx=mul.size()-1;
-   int ans=0;
-   for (int i = wgt.size()-1; i >=0; i--)
-   {
-    ans+=(wgt[i]*mul[idx--]);
-    /* code */
-   }
-   
-    // cout<<"ans -> ";
-    cout<<ans<<nl;
+ 
+    // cout<<o<<"  --   "<<z<<nl;
     
+
+    int reqo= ((k+1)/2);
+    if(reqo>o){
+        cout<<0<<nl;
+        return 1;
+    }
+    int ans=0;
+ 
+    for (int i = reqo; i <=k; i++)
+    {
+        int reqz = k - i;
+        int curr=1;
+
+ 
+    
+        curr = NcR(o,i) % mod;
+ 
+        // cout<<"after1\n";
+ 
+  
+        // cout<<"insideloop\n";
+        curr =  ((curr % mod) * (NcR(z,reqz)%mod)) % mod;
+
+    
+ 
+    // cout<<"after2\n";
+ 
+    ans+=(curr%mod);
+    ans%=mod;
+ 
+ 
+    }
+    
+ 
+    
+    cout<<ans%mod<<nl;
+ 
+ 
     return 1;
     
 }

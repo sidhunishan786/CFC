@@ -166,6 +166,24 @@ int factorial(int n){
 
 }
 
+int NCR(int n,int r){
+    int ans=1;
+    for (int i = n; i >n-r; i--)
+    {
+        ans*=i;
+        
+        /* code */
+    }
+    for (int i = 1; i <=r; i++)
+    {
+        ans/=i;
+        /* code */
+    }
+
+    return ans;
+    
+    
+}
 void input_arr(vector<int> &v){
     for (int i = 0; i < v.size(); i++)
     {
@@ -365,89 +383,41 @@ struct custom_hash {
     }
 };
 
-int NcR(int n, int r)
-{
- 
-    long long p = 1, k = 1;
- 
-    if (n - r < r)
-        r = n - r;
- 
-    if (r != 0) {
-        while (r) {
-            p *= n;
-            p%mod;
-            k *= r;
- 
-            long long m = __gcd(p, k);
- 
-            p /= m;
-            k /= m;
- 
-            n--;
-            r--;
-        }
- 
-    }
- 
-    else
-        p = 1;
- 
-    // if our approach is correct p = ans and k =1
-    return p;
-}
-
-
 //------------------------------------------------------------- header files &  functions -------------------------------------------------------------------//
 
 
 int solve(){
-    int k;
-    int n,m,w;
-    cin>>m>>n>>k;
-    cin>>w;
-    vector<int> wgt(w);
-    input_arr(wgt);
-    sort(wgt.begin(),wgt.end());
-       
-    vector<int> mul(n*m);
-    int idx=0;
-    vector<vector<int> > v2(m,vector<int>(n,0));
-    for (int i = 0; i <v2.size(); i++)
-    {
-      
-        for (int j = 0; j < v2[0].size(); j++)
-        {
-            int zz=0;
-            int rowStart = max(zz, i - k + 1);
-    int rowEnd = min(m - k, i);
-    int colStart = max(zz, j - k + 1);
-    int colEnd = min(n - k, j);
 
+   int s=2,e=999;
+
+
+   while (s!=e)
+   {
+    int temp;
     
-    int rowCount = rowEnd - rowStart + 1;
-    int colCount = colEnd - colStart + 1;
-    mul[idx]= rowCount * colCount;
-    idx++;
-   
+    int mid = (e+s)/2;
+    // cout<<mid<<" + is mid "<<nl;
 
-        }
-        
-      
+    cout<<"? "<<1<<" "<<mid<<nl;
+    cout.flush();
+    cin>>temp;
+    cout.flush();
+    if(temp > mid){
+        e=mid;
+    }
+    else
+    {
+        s=mid + 1;
+  
     }
 
-   sort(mul.begin(),mul.end());
-   idx=mul.size()-1;
-   int ans=0;
-   for (int i = wgt.size()-1; i >=0; i--)
-   {
-    ans+=(wgt[i]*mul[idx--]);
-    /* code */
-   }
-   
-    // cout<<"ans -> ";
-    cout<<ans<<nl;
+    // cout<<"s ->  "<<s<<"  e--> "<<e<<nl;
+    cout.flush();
     
+
+   }
+   cout<<"! "<<s<<nl;
+
     return 1;
     
 }

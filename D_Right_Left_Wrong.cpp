@@ -402,51 +402,66 @@ int NcR(int n, int r)
 
 
 int solve(){
-    int k;
-    int n,m,w;
-    cin>>m>>n>>k;
-    cin>>w;
-    vector<int> wgt(w);
-    input_arr(wgt);
-    sort(wgt.begin(),wgt.end());
-       
-    vector<int> mul(n*m);
-    int idx=0;
-    vector<vector<int> > v2(m,vector<int>(n,0));
-    for (int i = 0; i <v2.size(); i++)
+ 
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    input_arr(v);
+    string st;
+    cin>>st;
+    bool f=false;
+   
+    int ans=0;
+    for (int i = 1; i < n; i++)
     {
-      
-        for (int j = 0; j < v2[0].size(); j++)
-        {
-            int zz=0;
-            int rowStart = max(zz, i - k + 1);
-    int rowEnd = min(m - k, i);
-    int colStart = max(zz, j - k + 1);
-    int colEnd = min(n - k, j);
-
-    
-    int rowCount = rowEnd - rowStart + 1;
-    int colCount = colEnd - colStart + 1;
-    mul[idx]= rowCount * colCount;
-    idx++;
-   
-
-        }
-        
-      
+        v[i]+=v[i-1];
+        /* code */
     }
-
-   sort(mul.begin(),mul.end());
-   idx=mul.size()-1;
-   int ans=0;
-   for (int i = wgt.size()-1; i >=0; i--)
-   {
-    ans+=(wgt[i]*mul[idx--]);
-    /* code */
-   }
+    vector<int> L(n,-1);
+    unordered_map<int,int> R;
+    int curr=1;
+    for (int i = 0; i < n; i++)
+    {
+        if(st[i]=='L'){
+        L[i]=curr++;
+        }
    
-    // cout<<"ans -> ";
+    }
+    curr=0;
+    for (int i = n-1; i >=0; i--)
+    {
+        if(st[i]=='R'){
+            R[curr+1]=i;
+            curr++;
+        }
+       
+    }
+    // printv(L);
+    for (int i = 0; i < v.size(); i++)
+    {
+        if(L[i]!=-1 && (R.find(L[i])!=R.end()) && R[L[i]]>i){
+            ans+=v[R[L[i]]]-v[i];
+            // cout<<i<<" --- "<<R[L[i]]<<nl;
+            if(i>0){
+                ans+=(v[i]-v[i-1]);
+
+            }
+            else
+            {
+                ans+=v[i];
+            }
+            
+        }
+        /* code */
+    }
+    
+    
+    
+    
+    
     cout<<ans<<nl;
+    
+    
     
     return 1;
     
